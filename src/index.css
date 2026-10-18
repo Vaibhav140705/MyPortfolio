@@ -1,55 +1,260 @@
 
 @import "tailwindcss";
 
+/* ---------- Design tokens ---------- */
+
 :root {
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-  color: #f3f4f6;
-  background: #080a10;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+
+  color: #e8eef8;
+  background: #080b14;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-bg: #080b14;
+  --color-panel: #101827;
+  --color-cyan: #43e8ff;
+  --color-violet: #9b7bff;
+  --color-text: #e8eef8;
+  --color-muted: #94a3b8;
+  --color-border: rgba(148, 163, 184, 0.16);
+
   scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  min-width: 320px;
+  background: var(--color-bg);
+}
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background:
+    radial-gradient(
+      ellipse at 15% 0%,
+      rgba(67, 232, 255, 0.055),
+      transparent 38rem
+    ),
+    radial-gradient(
+      ellipse at 85% 18%,
+      rgba(155, 123, 255, 0.07),
+      transparent 36rem
+    ),
+    var(--color-bg);
 }
 
 ::selection {
-  background: #6255f5;
-  color: white;
+  background: rgba(67, 232, 255, 0.28);
+  color: #ffffff;
+}
+
+button,
+a,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
 }
 
 button,
 a {
-  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 4px;
+}
+
+/* ---------- Technical grid ---------- */
 
 .grid-background {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+    linear-gradient(
+      90deg,
+      rgba(148, 163, 184, 0.045) 1px,
+      transparent 1px
+    );
   background-size: 48px 48px;
 }
+
+.grid-background-fine {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+    linear-gradient(
+      90deg,
+      rgba(148, 163, 184, 0.035) 1px,
+      transparent 1px
+    );
+  background-size: 24px 24px;
+}
+
+/* Fade the grid toward the edges instead of showing a flat pattern. */
+.grid-fade {
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 78%);
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 20%,
+    transparent 78%
+  );
+}
+
+/* ---------- Ambient lighting ---------- */
 
 .glow {
   background: radial-gradient(
     circle,
-    rgba(91, 75, 255, 0.19) 0%,
-    rgba(8, 10, 16, 0) 70%
+    rgba(67, 232, 255, 0.13) 0%,
+    rgba(155, 123, 255, 0.08) 35%,
+    transparent 72%
   );
+  pointer-events: none;
 }
 
+.glow-cyan {
+  background: radial-gradient(
+    circle,
+    rgba(67, 232, 255, 0.16),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.glow-violet {
+  background: radial-gradient(
+    circle,
+    rgba(155, 123, 255, 0.17),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ---------- Typography ---------- */
+
 .gradient-text {
-  background: linear-gradient(100deg, #ffffff 15%, #a5a0ff 55%, #60a5fa 100%);
+  background: linear-gradient(
+    105deg,
+    #ffffff 8%,
+    #b9f7ff 38%,
+    #43e8ff 65%,
+    #9b7bff 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.eyebrow {
+  color: var(--color-cyan);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* ---------- Surface treatments ---------- */
+
+.lab-panel {
+  border: 1px solid var(--color-border);
+  background: linear-gradient(
+    145deg,
+    rgba(16, 24, 39, 0.86),
+    rgba(10, 14, 25, 0.78)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.lab-border {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#0c1220, #0c1220) padding-box,
+    linear-gradient(
+      125deg,
+      rgba(67, 232, 255, 0.42),
+      rgba(155, 123, 255, 0.22),
+      rgba(67, 232, 255, 0.08)
+    ) border-box;
+}
+
+.lab-hover {
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease,
+    transform 220ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lab-hover:hover {
+    border-color: rgba(67, 232, 255, 0.32);
+    box-shadow:
+      0 0 28px rgba(67, 232, 255, 0.055),
+      inset 0 1px 0 rgba(255, 255, 255, 0.035);
+    transform: translateY(-3px);
+  }
+}
+
+/* ---------- Motion utilities ---------- */
+
+@keyframes ambient-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(67, 232, 255, 0.38);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(67, 232, 255, 0);
+  }
+}
+
+.ambient-pulse {
+  animation: ambient-pulse 9s ease-in-out infinite;
+}
+
+.status-pulse {
+  animation: status-pulse 2.4s ease-out infinite;
+}
+
+/* ---------- Accessibility ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
