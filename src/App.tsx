@@ -14,11 +14,11 @@ const socials = [
   { label: "Chess.com", href: "https://www.chess.com/member/dxt_vaib14" },
 ];
 
-const focusAreas = [
-  { number: "01", title: "Software & AI", detail: "Applications · APIs · LLMs" },
-  { number: "02", title: "Embedded Systems", detail: "Microcontrollers · IoT" },
-  { number: "03", title: "VLSI & Digital Design", detail: "RTL · Verification · FPGA" },
-];
+// const focusAreas = [
+//   { number: "01", title: "Software & AI", detail: "Applications · APIs · LLMs" },
+//   { number: "02", title: "Embedded Systems", detail: "Microcontrollers · IoT" },
+//   { number: "03", title: "VLSI & Digital Design", detail: "RTL · Verification · FPGA" },
+// ];
 
 function Icon({
   name,
@@ -26,10 +26,11 @@ function Icon({
   color = "currentColor",
 }: {
   name: string;
-  size?: "md" | "xl";
+  size?: "sm" | "md" | "lg" | "xl";
   color?: string;
 }) {
-  const iconSize = size === "xl" ? 24 : 20;
+  const iconSize =
+    size === "xl" ? 24 : size === "lg" ? 20 : size === "sm" ? 16 : 18;
   const paths: Record<string, string> = {
     "code-2": "M8 9l-3 3 3 3m8-6l3 3-3 3m-5 3l2-12",
     "circuit-board": "M4 4h16v16H4zM8 8h8v8H8zM4 9H2m2 3H2m18-3h2m-2 3h2M9 4V2m3 2V2m3 2V2M9 20v2m3-2v2m3-2v2",
@@ -1350,7 +1351,7 @@ function App() {
       </div>
 
       <div className="flex items-center gap-3 self-start rounded-xl border border-white/10 bg-white/[0.025] px-4 py-3 md:self-auto">
-        <icon name="files" size="xl" color="#a78bfa" />
+              <Icon name="files" size="xl" color="#a78bfa" />
         <div>
           <p className="font-mono text-xs text-gray-200">RESUME LIBRARY</p>
           <p className="mt-1 font-mono text-[10px] text-gray-500">PDF / 3 PROFILES</p>
@@ -1474,7 +1475,7 @@ function App() {
             </motion.div>
 
             <div className="absolute bottom-3 right-3 flex items-center gap-2 font-mono text-[9px] tracking-widest text-gray-500">
-              <icon name={resume.icon} size="sm" />
+              <Icon name={resume.icon} size="sm" />
               PDF / PROFILE {resume.number}
             </div>
           </div>
@@ -1501,7 +1502,7 @@ function App() {
               rel="noopener noreferrer"
               className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm text-gray-200 transition hover:border-white/30 hover:bg-white/[0.05]"
             >
-              <icon name="eye" size="sm" />
+              <Icon name="eye" size="sm" />
               View PDF
             </a>
 
@@ -1511,7 +1512,7 @@ function App() {
               className="inline-flex flex-1 items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm transition hover:bg-white/[0.05]"
               style={{ color: resume.accent }}
             >
-              <icon name="download" size="sm" />
+              <Icon name="download" size="sm" />
               Download
             </a>
           </div>
@@ -1571,7 +1572,7 @@ function App() {
         <div className="lab-panel lab-border rounded-2xl p-6 sm:p-8">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-300/20 bg-cyan-300/[0.07]">
-              <icon name="radio-tower" size="xl" color="#43e8ff" />
+              <Icon name="radio-tower" size="xl" color="#43e8ff" />
             </div>
             <div>
               <p className="text-sm font-medium text-white">Connection terminal</p>
@@ -1591,7 +1592,7 @@ function App() {
             href="mailto:vaib140705@gmail.com"
             className="mt-3 flex items-center gap-3 break-all text-sm text-cyan-300 transition hover:text-cyan-100 sm:text-base"
           >
-            <icon name="mail" size="lg" />
+            <Icon name="mail" size="lg" />
             vaib140705@gmail.com
             <span className="shrink-0">↗</span>
           </a>
@@ -1619,7 +1620,7 @@ function App() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2.5 text-sm text-gray-300 transition hover:border-cyan-300/40 hover:text-cyan-200"
             >
-              <icon name="github" size="sm" />
+              <Icon name="github" size="sm" />
               GitHub ↗
             </a>
 
@@ -1629,7 +1630,7 @@ function App() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2.5 text-sm text-gray-300 transition hover:border-cyan-300/40 hover:text-cyan-200"
             >
-              <icon name="linkedin" size="sm" />
+              <Icon name="linkedin" size="sm" />
               LinkedIn ↗
             </a>
           </div>
@@ -1769,7 +1770,7 @@ function App() {
           className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 to-violet-400 px-5 py-3.5 font-semibold text-[#080b14] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {contactStatus === "sending" ? "Sending message..." : "Send message"}
-          {contactStatus !== "sending" && <icon name="arrow-up-right" size="sm" />}
+          {contactStatus !== "sending" && <Icon name="arrow-up-right" size="sm" />}
         </button>
 
         <p className="mt-4 text-center text-xs leading-5 text-gray-500">
